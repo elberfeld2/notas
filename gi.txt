@@ -1,0 +1,6 @@
+git config --global --list	
+git config --global color.ui true
+git config --global user.email "enrique5001@hotmail.com"
+git init
+git status
+git add -A
