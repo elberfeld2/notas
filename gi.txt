@@ -5,4 +5,5 @@ git init
 git status
 git add -A
 git commit -m "Vacio"
-Elber jojo
+git log
+git checkout
