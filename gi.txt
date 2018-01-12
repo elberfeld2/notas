@@ -11,3 +11,11 @@ git checkout master
 git branch
 git branch rama
 git checkout 
+git merge parte2
+git branch -D ramaelinar
+git branch -b ramacrear
+git clone direcion
+git remote
+git remote add origin https://github.com/elberfeld2/notas.git
+git remote remove origin 
+git push origin master
