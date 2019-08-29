@@ -33,7 +33,7 @@ if(isset($_GET["com"])){//Preguntamos si hay un comentario a agregar
 
 }
 
-$tablas=isset($_GET["numero"]) ? $_GET["numero"] : 12; //PReguntamso el numero de tablas
+$numero=isset($_GET["numero"]) ? $_GET["numero"] : 12; //PReguntamso el numero de tablas
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ $tablas=isset($_GET["numero"]) ? $_GET["numero"] : 12; //PReguntamso el numero d
 
         function escribir($idTabla)//Menu que recibe el id de la tabla
         {
-         global $tablas;
+         global $numero;
             ?>
             <div>
                 <form action="index.php">
@@ -51,7 +51,7 @@ $tablas=isset($_GET["numero"]) ? $_GET["numero"] : 12; //PReguntamso el numero d
                         <input type="text" class="form-control" id="com" placeholder="Ingresa comentario" name="com"><!-- Comentario -->
                     </div>
                     <input type="hidden" class="form-control" id="tabla"  name="tabla" value="<?=$idTabla?>"><!-- Valor oculto del id de la tabla -->
-                    <input type="hidden" class="form-control" id="numero"  name="numero" value="<?=$tablas?>"><!-- Valor oculto del numeor de tablas a crear-->
+                    <input type="hidden" class="form-control" id="numero"  name="numero" value="<?=$numero?>"><!-- Valor oculto del numeor de tablas a crear-->
                     <button type="submit" class="btn btn-default">enviar</button>
                 </form>
             </div>
@@ -68,7 +68,7 @@ $tablas=isset($_GET["numero"]) ? $_GET["numero"] : 12; //PReguntamso el numero d
             echo "<br>";
             echo "<h4>Comentarios</h4>";//Agragamos un titulo
 
-            for($i=0;$i<$tamañoDeLaTabla;$i++){//Imprimimos los comentarios
+            for($i=0;$i<$tamañoDeLaTabla;$i++){//Imprimimos los comentarios["ho","yas"]
                 echo $comentarios[$i];
                 echo "<br>";
             }
@@ -80,21 +80,21 @@ $tablas=isset($_GET["numero"]) ? $_GET["numero"] : 12; //PReguntamso el numero d
 ///////////////////////////////Funciones para crear las tablas
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        function tablaMultiplicar($n){ //Solicitamos el n de la tbal de multiplicacion
+        function tablaMultiplicar($idTabla){ //Solicitamos el n de la tbal de multiplicacion
 
             echo "<div class=\"col-sm-3\">";//Div
-            echo "<h3>Tabla del $n </h3>";//Titulo
+            echo "<h3>Tabla del $idTabla </h3>";//Titulo
 
             for($i=0;$i<10;$i++){//Creacion de la tabla asta 10
-                echo  "$i x $n = ".($i*$n);
+                echo  "$i x $idTabla = ".($i*$idTabla);
                 echo "<br>";
             }
 
-            if(isset($_SESSION["comentarios"][$n])){
-                comentarios($n);//Se muestran los comentarios solo si existen
+            if(isset($_SESSION["comentarios"][$idTabla])){
+                comentarios($idTabla);//Se muestran los comentarios solo si existen
             }
 
-            escribir($n);//Creacion del menu para crear mensaje
+            escribir($idTabla);//Creacion del menu para crear mensaje
 
             echo "</div>";
         }
@@ -132,7 +132,7 @@ $tablas=isset($_GET["numero"]) ? $_GET["numero"] : 12; //PReguntamso el numero d
         </form>
     </div>
         <?php
-        for($i=1;$i<=$tablas;$i++){ //Creacion delas tablas con un total propuesto por el usuario en la variable $tablas
+        for($i=1;$i<=$numero;$i++){ //Creacion delas tablas con un total propuesto por el usuario en la variable $tablas
 
             if($i%4==1){             //Para ordenar mejor cada fila se agraga un row  al cominzo ej : 1%4=1 5%4=1
                 echo "<div class=\"row\"> ";
@@ -145,9 +145,12 @@ $tablas=isset($_GET["numero"]) ? $_GET["numero"] : 12; //PReguntamso el numero d
             }
         }
 
-        if($tablas%4!=0){ //Si al finalizar no se completa la fila agraga cerramos
+        if($numero%4!=0){ //Si al finalizar no se completa la fila agraga cerramos
             echo "</div>";
         }
+
+        list($s,$k)=array(array(1,2),array(2,3));
+        var_dump($s);
 
         ?>
 </div>
